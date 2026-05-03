@@ -1,20 +1,231 @@
----
-title: Page not found
----
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>404 — MedDDL</title>
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-</head>
-<body>
-  <main class="controls-section" style="margin-top: 80px; text-align: center;">
-    <p class="eyebrow">404</p>
-    <h1 style="font-size: clamp(2.4rem, 8vw, 4rem);">Page not found</h1>
-    <p class="hero-text" style="margin-inline: auto;">The page you are looking for does not exist.</p>
-    <a class="button primary" href="{{ '/' | relative_url }}">Back to MedDDL</a>
-  </main>
-</body>
-</html>
+(function () {
+  const conferences = Array.isArray(window.MEDDDL_CONFERENCES) ? window.MEDDDL_CONFERENCES : [];
+  const state = { category: 'All', query: '', status: 'all' };
+
+  const els = {
+    searchInput: document.getElementById('searchInput'),
+    statusFilter: document.getElementById('statusFilter'),
+    categoryChips: document.getElementById('categoryChips'),
+    grid: document.getElementById('conferenceGrid'),
+    resultCount: document.getElementById('resultCount'),
+    emptyState: document.getElementById('emptyState'),
+    resetFilters: document.getElementById('resetFilters'),
+    statTotal: document.getElementById('stat-total'),
+    statUpcoming: document.getElementById('stat-upcoming'),
+    statTbd: document.getElementById('stat-tbd')
+  };
+
+  const now = new Date();
+  const DAY = 24 * 60 * 60 * 1000;
+
+  function escapeHtml(value) {
+    return String(value ?? '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+  }
+
+  function getDate(value) {
+    if (!value) return null;
+    const parsed = new Date(value);
+    return Number.isNaN(parsed.getTime()) ? null : parsed;
+  }
+
+  function deadlineMeta(deadline) {
+    const date = getDate(deadline.date_iso);
+    if (!date) {
+      return {
+        status: 'tbd',
+        text: 'TBD / needs update',
+        className: 'status-tbd',
+        date: null,
+        diffDays: null
+      };
+    }
+    const diffMs = date.getTime() - now.getTime();
+    if (diffMs >= 0) {
+      const days = Math.ceil(diffMs / DAY);
+      return {
+        status: days <= 30 ? 'soon' : 'upcoming',
+        text: days === 0 ? 'Due today' : days === 1 ? '1 day left' : `${days} days left`,
+        className: days <= 30 ? 'status-soon' : 'status-upcoming',
+        date,
+        diffDays: days
+      };
+    }
+    const daysAgo = Math.floor(Math.abs(diffMs) / DAY);
+    return {
+      status: 'expired',
+      text: daysAgo === 0 ? 'Expired today' : daysAgo === 1 ? 'Expired 1 day ago' : `Expired ${daysAgo} days ago`,
+      className: 'status-expired',
+      date,
+      diffDays: -daysAgo
+    };
+  }
+
+  function conferenceMeta(conf) {
+    const deadlineItems = (conf.deadlines || []).map((deadline) => ({ deadline, meta: deadlineMeta(deadline) }));
+    const upcoming = deadlineItems.filter((item) => item.meta.date && item.meta.date >= now);
+    const tbd = deadlineItems.filter((item) => item.meta.status === 'tbd');
+    const expired = deadlineItems.filter((item) => item.meta.status === 'expired');
+    const next = upcoming.sort((a, b) => a.meta.date - b.meta.date)[0] || null;
+    const lastExpired = expired.sort((a, b) => b.meta.date - a.meta.date)[0] || null;
+    return {
+      deadlineItems,
+      hasUpcoming: upcoming.length > 0,
+      hasNext30: upcoming.some((item) => item.meta.diffDays <= 30),
+      hasTbd: tbd.length > 0,
+      hasExpired: expired.length > 0,
+      sortDate: next?.meta.date || lastExpired?.meta.date || null,
+      sortGroup: next ? 0 : tbd.length ? 2 : 1
+    };
+  }
+
+  function normalize(value) {
+    return String(value ?? '').toLowerCase();
+  }
+
+  function conferenceSearchText(conf) {
+    return [
+      conf.acronym,
+      conf.year,
+      conf.name,
+      conf.category,
+      conf.location,
+      conf.note,
+      ...(conf.tags || [])
+    ].map(normalize).join(' ');
+  }
+
+  function matchesStatus(conf, meta) {
+    switch (state.status) {
+      case 'upcoming': return meta.hasUpcoming;
+      case 'next30': return meta.hasNext30;
+      case 'expired': return meta.hasExpired && !meta.hasUpcoming;
+      case 'tbd': return meta.hasTbd;
+      default: return true;
+    }
+  }
+
+  function formatConferenceDates(conf) {
+    if (!conf.conference_start && !conf.conference_end) return 'Dates TBD';
+    if (conf.conference_start === conf.conference_end || !conf.conference_end) return conf.conference_start;
+    return `${conf.conference_start} – ${conf.conference_end}`;
+  }
+
+  function renderCategories() {
+    const categories = [...new Set(conferences.map((conf) => conf.category).filter(Boolean))].sort();
+    els.categoryChips.innerHTML = categories.map((category) => (
+      `<button class="chip" type="button" data-category="${escapeHtml(category)}">${escapeHtml(category)}</button>`
+    )).join('');
+  }
+
+  function renderStats() {
+    const metas = conferences.map(conferenceMeta);
+    els.statTotal.textContent = conferences.length;
+    els.statUpcoming.textContent = metas.filter((meta) => meta.hasUpcoming).length;
+    els.statTbd.textContent = metas.filter((meta) => meta.hasTbd).length;
+  }
+
+  function renderCard(conf, meta) {
+    const deadlines = meta.deadlineItems.map(({ deadline, meta: dMeta }) => `
+      <div class="deadline-row">
+        <div class="deadline-row-header">
+          <p class="deadline-label">${escapeHtml(deadline.label || deadline.type || 'Deadline')}</p>
+          <span class="deadline-type">${escapeHtml(deadline.type || 'deadline')}</span>
+        </div>
+        <p class="deadline-date">${escapeHtml(deadline.display || 'TBD')}${deadline.timezone ? ` · ${escapeHtml(deadline.timezone)}` : ''}</p>
+        <span class="status-badge ${dMeta.className}">${escapeHtml(dMeta.text)}</span>
+      </div>
+    `).join('');
+
+    const tags = (conf.tags || []).slice(0, 6).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join('');
+    const website = conf.website ? `<a class="source-link" href="${escapeHtml(conf.website)}" target="_blank" rel="noreferrer">Website</a>` : '';
+    const submission = conf.submission_url ? `<a class="source-link" href="${escapeHtml(conf.submission_url)}" target="_blank" rel="noreferrer">Submission</a>` : '';
+    const source = conf.source_url ? `<a class="source-link" href="${escapeHtml(conf.source_url)}" target="_blank" rel="noreferrer">Source</a>` : '';
+
+    return `
+      <article class="conference-card">
+        <div class="card-top">
+          <div>
+            <div class="acronym">${escapeHtml(conf.acronym)} ${escapeHtml(conf.year)}</div>
+          </div>
+          <span class="category-badge">${escapeHtml(conf.category || 'General')}</span>
+        </div>
+        <h3 class="conference-name">${escapeHtml(conf.name)}</h3>
+        <p class="meta-line"><strong>Conference:</strong> <span>${escapeHtml(formatConferenceDates(conf))}</span></p>
+        <p class="meta-line"><strong>Location:</strong> <span>${escapeHtml(conf.location || 'TBD')}</span></p>
+        <div class="deadline-list">${deadlines || '<div class="deadline-row"><span class="status-badge status-tbd">No deadline data</span></div>'}</div>
+        ${conf.note ? `<p class="card-note">${escapeHtml(conf.note)}</p>` : ''}
+        <div class="tag-list">${tags}</div>
+        <div class="card-actions">${website}${submission}${source}</div>
+      </article>
+    `;
+  }
+
+  function render() {
+    const query = normalize(state.query).trim();
+    const filtered = conferences
+      .map((conf) => ({ conf, meta: conferenceMeta(conf) }))
+      .filter(({ conf, meta }) => state.category === 'All' || conf.category === state.category)
+      .filter(({ conf }) => !query || conferenceSearchText(conf).includes(query))
+      .filter(({ conf, meta }) => matchesStatus(conf, meta))
+      .sort((a, b) => {
+        if (a.meta.sortGroup !== b.meta.sortGroup) return a.meta.sortGroup - b.meta.sortGroup;
+        if (a.meta.sortDate && b.meta.sortDate) return a.meta.sortDate - b.meta.sortDate;
+        if (a.meta.sortDate) return -1;
+        if (b.meta.sortDate) return 1;
+        return String(a.conf.acronym).localeCompare(String(b.conf.acronym));
+      });
+
+    els.grid.innerHTML = filtered.map(({ conf, meta }) => renderCard(conf, meta)).join('');
+    els.resultCount.textContent = `${filtered.length} of ${conferences.length} conferences shown`;
+    els.emptyState.hidden = filtered.length > 0;
+
+    document.querySelectorAll('.chip').forEach((button) => {
+      button.classList.toggle('active', button.dataset.category === state.category);
+    });
+  }
+
+  function init() {
+    if (!conferences.length) {
+      els.resultCount.textContent = 'No conference data loaded. Check Jekyll data rendering.';
+      els.emptyState.hidden = false;
+      return;
+    }
+
+    renderCategories();
+    renderStats();
+    render();
+
+    els.searchInput.addEventListener('input', (event) => {
+      state.query = event.target.value;
+      render();
+    });
+
+    els.statusFilter.addEventListener('change', (event) => {
+      state.status = event.target.value;
+      render();
+    });
+
+    document.querySelector('.filter-block').addEventListener('click', (event) => {
+      const button = event.target.closest('[data-category]');
+      if (!button) return;
+      state.category = button.dataset.category;
+      render();
+    });
+
+    els.resetFilters.addEventListener('click', () => {
+      state.category = 'All';
+      state.query = '';
+      state.status = 'all';
+      els.searchInput.value = '';
+      els.statusFilter.value = 'all';
+      render();
+    });
+  }
+
+  init();
+})();

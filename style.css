@@ -1,0 +1,586 @@
+# MedDDL seed database
+# Date fields use ISO-8601 with timezone offsets for client-side countdowns.
+# When a verified deadline was not available, keep date_iso empty and set status_hint: tbd.
+# Please verify source_url before relying on a deadline for submission.
+
+- id: rsna-2026
+  acronym: RSNA
+  year: 2026
+  name: Radiological Society of North America Annual Meeting
+  category: Radiology
+  location: Chicago, IL, USA
+  conference_start: "2026-11-29"
+  conference_end: "2026-12-03"
+  website: https://www.rsna.org/annual-meeting
+  submission_url: https://www.rsna.org/annual-meeting/abstract-submission
+  source_url: https://www.rsna.org/annual-meeting/abstract-submission
+  last_checked: "2026-05-03"
+  tags: [radiology, medical imaging, clinical, abstract]
+  note: "Premier global radiology meeting."
+  deadlines:
+    - type: abstract
+      label: Abstract submission
+      date_iso: "2026-05-06T12:00:00-05:00"
+      display: "May 6, 2026, 12:00 CT"
+      timezone: "America/Chicago"
+      status_hint: verified
+
+- id: ecr-2027
+  acronym: ECR
+  year: 2027
+  name: European Congress of Radiology
+  category: Radiology
+  location: Vienna, Austria
+  conference_start: "2027-03-03"
+  conference_end: "2027-03-07"
+  website: https://www.myesr.org/congress/
+  submission_url: https://www.myesr.org/congress/attend/
+  source_url: https://www.myesr.org/congress/attend/
+  last_checked: "2026-05-03"
+  tags: [radiology, medical imaging, europe, abstract]
+  note: "The source lists the abstract submission window as Aug 3–Sep 30; exact closing time should be verified once the submission portal opens."
+  deadlines:
+    - type: abstract
+      label: Abstract submission closes
+      date_iso: "2026-09-30T23:59:00+02:00"
+      display: "Sep 30, 2026, local time TBD"
+      timezone: "Europe/Vienna"
+      status_hint: verified_date_time_tbd
+
+- id: ismrm-2027
+  acronym: ISMRM
+  year: 2027
+  name: ISMRM & ISMRT Annual Meeting & Exhibition
+  category: MRI
+  location: Vancouver, BC, Canada
+  conference_start: "2027-05-08"
+  conference_end: "2027-05-13"
+  website: https://www.ismrm.org/27m/
+  submission_url: https://www.ismrm.org/abstract-submission-and-review/
+  source_url: https://www.ismrm.org/meetings-workshops/future-ismrm-meetings/
+  last_checked: "2026-05-03"
+  tags: [mri, magnetic resonance, medical imaging, abstract]
+  note: "Official ISMRM pages should be rechecked because source snippets may differ by one day across pages."
+  deadlines:
+    - type: abstract
+      label: Abstract submission
+      date_iso: "2026-10-28T23:59:00-07:00"
+      display: "Oct 28, 2026, time TBD"
+      timezone: "America/Vancouver"
+      status_hint: verified_date_time_tbd
+
+- id: scmr-2027
+  acronym: SCMR
+  year: 2027
+  name: Society for Cardiovascular Magnetic Resonance Annual Scientific Sessions
+  category: Cardiology
+  location: Rome, Italy
+  conference_start: "2027-02-17"
+  conference_end: "2027-02-20"
+  website: https://scmr.org/event-calendar/
+  submission_url: https://scmr.org/abstracts-information/
+  source_url: https://scmr.org/event-calendar/
+  last_checked: "2026-05-03"
+  tags: [cmr, cardiac mri, cardiology, medical imaging, abstract]
+  note: "SCMR event calendar lists abstract submission opening in May 2026 and deadline on Aug 26, 2026."
+  deadlines:
+    - type: abstract
+      label: Abstract submission
+      date_iso: "2026-08-26T23:59:00+02:00"
+      display: "Aug 26, 2026, time TBD"
+      timezone: "Europe/Rome"
+      status_hint: verified_date_time_tbd
+
+- id: aha-2026
+  acronym: AHA
+  year: 2026
+  name: American Heart Association Scientific Sessions
+  category: Cardiology
+  location: Chicago, IL, USA
+  conference_start: "2026-11-06"
+  conference_end: "2026-11-09"
+  website: https://professional.heart.org/en/meetings/scientific-sessions
+  submission_url: https://professional.heart.org/en/meetings/scientific-sessions/submit-science
+  source_url: https://professional.heart.org/en/meetings/scientific-sessions
+  last_checked: "2026-05-03"
+  tags: [cardiology, cardiovascular, clinical, abstract, late-breaking]
+  note: "Includes general abstracts/clinical cases and late-breaking science deadlines."
+  deadlines:
+    - type: abstract
+      label: General abstract and clinical case submission
+      date_iso: "2026-06-04T18:00:00-05:00"
+      display: "Jun 4, 2026, 6:00 PM CT"
+      timezone: "America/Chicago"
+      status_hint: verified
+    - type: late-breaking
+      label: Late-breaking science submission
+      date_iso: "2026-08-24T18:00:00-05:00"
+      display: "Aug 24, 2026, 6:00 PM CT"
+      timezone: "America/Chicago"
+      status_hint: verified
+
+- id: acc-2027
+  acronym: ACC
+  year: 2027
+  name: American College of Cardiology Annual Scientific Session / World Congress of Cardiology
+  category: Cardiology
+  location: Houston, TX, USA
+  conference_start: "2027-04-10"
+  conference_end: "2027-04-12"
+  website: https://accscientificsession.acc.org/
+  submission_url: https://accscientificsession.acc.org/Submit-Your-Science
+  source_url: https://accscientificsession.acc.org/Submit-Your-Science
+  last_checked: "2026-05-03"
+  tags: [cardiology, cardiovascular, clinical, abstract]
+  note: "ACC page says to check back for ACC.27-WCC submission dates."
+  deadlines:
+    - type: abstract
+      label: Abstract submission
+      date_iso: ""
+      display: "TBD"
+      timezone: "America/Chicago"
+      status_hint: tbd
+
+- id: esc-2026
+  acronym: ESC
+  year: 2026
+  name: European Society of Cardiology Congress
+  category: Cardiology
+  location: Munich, Germany and Online
+  conference_start: "2026-08-28"
+  conference_end: "2026-08-31"
+  website: https://www.escardio.org/events/congresses/esc-congress
+  submission_url: https://www.escardio.org/events/congresses/esc-congress/call-for-science/abstracts/
+  source_url: https://www.escardio.org/events/congresses/esc-congress/call-for-science/abstracts/rules/
+  last_checked: "2026-05-03"
+  tags: [cardiology, cardiovascular, europe, abstract]
+  note: "ESC 2026 general abstract deadline has passed; page remains useful for historical tracking."
+  deadlines:
+    - type: abstract
+      label: General abstract submission
+      date_iso: "2026-03-01T12:00:00+01:00"
+      display: "Mar 1, 2026, 12:00 CET"
+      timezone: "Europe/Paris"
+      status_hint: verified
+
+- id: tct-2026
+  acronym: TCT
+  year: 2026
+  name: Transcatheter Cardiovascular Therapeutics
+  category: Cardiology
+  location: San Diego, CA, USA
+  conference_start: "2026-10-31"
+  conference_end: "2026-11-03"
+  website: https://www.tctconference.com/
+  submission_url: https://www.tctconference.com/topics-categories-guidelines
+  source_url: https://www.tctconference.com/
+  last_checked: "2026-05-03"
+  tags: [interventional cardiology, cardiology, clinical, abstract, cases]
+  note: "TCT lists July 17, 2026 as submission deadline for challenging cases, scientific abstracts, innovation, and TCT Shark Tank."
+  deadlines:
+    - type: abstract
+      label: Scientific abstracts / cases / innovation submissions
+      date_iso: "2026-07-17T23:59:00-07:00"
+      display: "Jul 17, 2026, time TBD"
+      timezone: "America/Los_Angeles"
+      status_hint: verified_date_time_tbd
+
+- id: europcr-2026
+  acronym: EuroPCR
+  year: 2026
+  name: EuroPCR Course
+  category: Cardiology
+  location: Paris, France
+  conference_start: "2026-05-19"
+  conference_end: "2026-05-22"
+  website: https://www.pcronline.com/Courses/EuroPCR
+  submission_url: https://www.pcronline.com/Courses/EuroPCR/call-for-submissions
+  source_url: https://www.pcronline.com/Courses/EuroPCR/call-for-submissions
+  last_checked: "2026-05-03"
+  tags: [interventional cardiology, cardiology, europe, abstract, late-breaking]
+  note: "Regular submissions appear closed; the official source snippet lists a late-breaking trials deadline on Jan 26."
+  deadlines:
+    - type: late-breaking
+      label: Late-breaking trials submission
+      date_iso: "2026-01-26T23:59:00+01:00"
+      display: "Jan 26, 2026, 23:59 CET"
+      timezone: "Europe/Paris"
+      status_hint: verified
+
+- id: miccai-2026
+  acronym: MICCAI
+  year: 2026
+  name: International Conference on Medical Image Computing and Computer Assisted Intervention
+  category: Medical AI
+  location: Strasbourg, France
+  conference_start: "2026-09-27"
+  conference_end: "2026-10-01"
+  website: https://conferences.miccai.org/2026/en/default.asp
+  submission_url: https://conferences.miccai.org/2026/en/CALL-FOR-PAPERS.html
+  source_url: https://conferences.miccai.org/2026/en/IMPORTANT-DATES.html
+  last_checked: "2026-05-03"
+  tags: [medical ai, medical image computing, computer assisted intervention, paper, challenge]
+  note: "Main conference deadlines have passed; workshop/challenge deadlines may differ."
+  deadlines:
+    - type: abstract
+      label: Paper abstract registration
+      date_iso: "2026-02-12T23:59:00-08:00"
+      display: "Feb 12, 2026, 23:59 PT"
+      timezone: "America/Los_Angeles"
+      status_hint: verified
+    - type: paper
+      label: Main conference paper submission
+      date_iso: "2026-02-26T23:59:00-08:00"
+      display: "Feb 26, 2026, 23:59 PT"
+      timezone: "America/Los_Angeles"
+      status_hint: verified
+
+- id: ipmi-2027
+  acronym: IPMI
+  year: 2027
+  name: Information Processing in Medical Imaging
+  category: Medical AI
+  location: Quebec, Canada
+  conference_start: "2027-06-27"
+  conference_end: "2027-07-02"
+  website: https://2027.ipmi-conf.org/
+  submission_url: https://2027.ipmi-conf.org/
+  source_url: https://2027.ipmi-conf.org/
+  last_checked: "2026-05-03"
+  tags: [medical image processing, medical ai, paper, biennial]
+  note: "Official IPMI 2027 site lists estimated conference dates; paper deadlines are not yet posted."
+  deadlines:
+    - type: paper
+      label: Paper submission
+      date_iso: ""
+      display: "TBD"
+      timezone: "America/Toronto"
+      status_hint: tbd
+
+- id: midl-2026
+  acronym: MIDL
+  year: 2026
+  name: Medical Imaging with Deep Learning
+  category: Medical AI
+  location: Taipei, Taiwan
+  conference_start: "2026-07-08"
+  conference_end: "2026-07-10"
+  website: https://2026.midl.io/
+  submission_url: https://2026.midl.io/call-for-papers
+  source_url: https://2026.midl.io/dates
+  last_checked: "2026-05-03"
+  tags: [medical ai, deep learning, medical imaging, paper, short paper]
+  note: "Full-paper deadlines are closed; short-paper deadline is also closed as of May 2026."
+  deadlines:
+    - type: paper
+      label: Full paper submission
+      date_iso: "2025-12-10T23:59:00-12:00"
+      display: "Dec 10, 2025, AoE"
+      timezone: "Etc/GMT+12"
+      status_hint: verified
+    - type: short-paper
+      label: Short paper submission
+      date_iso: "2026-04-15T23:59:00-12:00"
+      display: "Apr 15, 2026, AoE"
+      timezone: "Etc/GMT+12"
+      status_hint: verified
+
+- id: isbi-2026
+  acronym: ISBI
+  year: 2026
+  name: IEEE International Symposium on Biomedical Imaging
+  category: Medical AI
+  location: London, United Kingdom
+  conference_start: "2026-04-08"
+  conference_end: "2026-04-11"
+  website: https://biomedicalimaging.org/2026/
+  submission_url: https://biomedicalimaging.org/2026/initial-author-instructions/
+  source_url: https://biomedicalimaging.org/2026/
+  last_checked: "2026-05-03"
+  tags: [biomedical imaging, medical imaging, signal processing, paper]
+  note: "ISBI 2026 paper submission deadline has passed."
+  deadlines:
+    - type: paper
+      label: 4-page paper submission
+      date_iso: "2025-11-14T23:59:00-05:00"
+      display: "Nov 14, 2025, 11:59 PM CDT/US"
+      timezone: "America/Chicago"
+      status_hint: verified
+
+- id: spie-mi-2027
+  acronym: SPIE MI
+  year: 2027
+  name: SPIE Medical Imaging
+  category: Medical AI
+  location: Vancouver, BC, Canada
+  conference_start: "2027-02-14"
+  conference_end: "2027-02-18"
+  website: https://spie.org/conferences-and-exhibitions/medical-imaging
+  submission_url: https://spie.org/conferences-and-exhibitions/medical-imaging/presenters/abstract-submission-guidelines
+  source_url: https://spie.org/conferences-and-exhibitions/medical-imaging/presenters/abstract-submission-guidelines
+  last_checked: "2026-05-03"
+  tags: [medical imaging, biomedical optics, image processing, cad, abstract]
+  note: "SPIE Medical Imaging 2027 call for papers."
+  deadlines:
+    - type: abstract
+      label: Abstract submission
+      date_iso: "2026-08-05T23:59:00-07:00"
+      display: "Aug 5, 2026, time TBD"
+      timezone: "America/Vancouver"
+      status_hint: verified_date_time_tbd
+
+- id: asco-2026
+  acronym: ASCO
+  year: 2026
+  name: American Society of Clinical Oncology Annual Meeting
+  category: Oncology
+  location: Chicago, IL, USA
+  conference_start: "2026-05-29"
+  conference_end: "2026-06-02"
+  website: https://www.asco.org/annual-meeting
+  submission_url: https://www.asco.org/meetings-education/meetings/abstract-submissions
+  source_url: https://asco.confex.com/asco/2026/cfp.cgi
+  last_checked: "2026-05-03"
+  tags: [oncology, clinical, abstract, late-breaking]
+  note: "ASCO 2026 general abstract deadline has passed."
+  deadlines:
+    - type: abstract
+      label: General abstract submission
+      date_iso: "2026-01-27T23:59:00-05:00"
+      display: "Jan 27, 2026, 11:59 PM ET"
+      timezone: "America/New_York"
+      status_hint: verified
+    - type: late-breaking
+      label: Late-breaking abstract submission
+      date_iso: "2026-03-09T12:00:00-04:00"
+      display: "Mar 9, 2026, 12:00 PM ET"
+      timezone: "America/New_York"
+      status_hint: verified
+
+- id: esmo-2026
+  acronym: ESMO
+  year: 2026
+  name: European Society for Medical Oncology Congress
+  category: Oncology
+  location: Madrid, Spain
+  conference_start: "2026-10-23"
+  conference_end: "2026-10-27"
+  website: https://www.esmo.org/meeting-calendar/esmo-congress-2026
+  submission_url: https://www.esmo.org/meeting-calendar/esmo-congress-2026/abstracts
+  source_url: https://www.esmo.org/meeting-calendar/esmo-congress-2026/abstracts
+  last_checked: "2026-05-03"
+  tags: [oncology, europe, clinical, abstract, late-breaking]
+  note: "ESMO page lists regular and late-breaking abstract deadlines."
+  deadlines:
+    - type: abstract
+      label: Abstracts / trials in progress / intent to submit LBAs
+      date_iso: "2026-05-12T21:00:00+02:00"
+      display: "May 12, 2026, 21:00 CEST"
+      timezone: "Europe/Madrid"
+      status_hint: verified
+    - type: late-breaking
+      label: Late-breaking abstract finalization
+      date_iso: "2026-09-08T21:00:00+02:00"
+      display: "Sep 8, 2026, 21:00 CEST"
+      timezone: "Europe/Madrid"
+      status_hint: verified
+
+- id: aan-2027
+  acronym: AAN
+  year: 2027
+  name: American Academy of Neurology Annual Meeting
+  category: Neurology
+  location: TBD
+  conference_start: "2027-05-01"
+  conference_end: "2027-05-05"
+  website: https://www.aan.com/events/annual-meeting
+  submission_url: https://www.aan.com/events/annual-meeting/abstracts
+  source_url: https://www.aan.com/events/annual-meeting/abstracts
+  last_checked: "2026-05-03"
+  tags: [neurology, clinical, abstract, late-breaking]
+  note: "AAN 2027 abstract deadline not yet posted on the tracked source; 2026 late-breaking page remains available."
+  deadlines:
+    - type: abstract
+      label: Abstract submission
+      date_iso: ""
+      display: "TBD"
+      timezone: "America/New_York"
+      status_hint: tbd
+
+- id: aaic-2026
+  acronym: AAIC
+  year: 2026
+  name: Alzheimer's Association International Conference
+  category: Neurology
+  location: London, United Kingdom and Online
+  conference_start: "2026-07-12"
+  conference_end: "2026-07-15"
+  website: https://aaic.alz.org/
+  submission_url: https://aaic.alz.org/abstracts/overview.asp
+  source_url: https://aaic.alz.org/abstracts/abstr-aaic.asp
+  last_checked: "2026-05-03"
+  tags: [alzheimers, dementia, neurology, abstract]
+  note: "AAIC page says abstract submissions are closed for 2026; exact regular deadline should be added from the submission guide if needed."
+  deadlines:
+    - type: abstract
+      label: Abstract submission
+      date_iso: ""
+      display: "Closed / date TBD"
+      timezone: "America/Chicago"
+      status_hint: closed_date_unknown
+
+- id: esoc-2026
+  acronym: ESOC
+  year: 2026
+  name: European Stroke Organisation Conference
+  category: Neurology
+  location: Maastricht, Netherlands
+  conference_start: "2026-05-06"
+  conference_end: "2026-05-08"
+  website: https://eso-stroke.org/esoc2026/
+  submission_url: https://eso-stroke.org/esoc2026/abstracts/
+  source_url: https://eso-stroke.org/esoc2026/abstracts/
+  last_checked: "2026-05-03"
+  tags: [stroke, neurology, europe, abstract, late-breaking]
+  note: "ESOC 2026 abstract deadlines have passed."
+  deadlines:
+    - type: abstract
+      label: Regular abstract submission
+      date_iso: "2026-01-07T23:59:00+01:00"
+      display: "Jan 7, 2026, 23:59 CET"
+      timezone: "Europe/Amsterdam"
+      status_hint: verified
+    - type: late-breaking
+      label: Late-breaking abstract submission
+      date_iso: "2026-02-12T23:59:00+01:00"
+      display: "Feb 12, 2026, 23:59 CET"
+      timezone: "Europe/Amsterdam"
+      status_hint: verified
+
+- id: wsc-2026
+  acronym: WSC
+  year: 2026
+  name: World Stroke Congress
+  category: Neurology
+  location: Seoul, Republic of Korea
+  conference_start: "2026-10-21"
+  conference_end: "2026-10-23"
+  website: https://worldstrokecongress.org/
+  submission_url: https://worldstrokecongress.org/abstract-guidelines-submission/
+  source_url: https://worldstrokecongress.org/abstract-guidelines-submission/
+  last_checked: "2026-05-03"
+  tags: [stroke, neurology, global, abstract]
+  note: "Official abstract guidelines page lists Apr 29, 2026; some news posts referenced Apr 15, so verify source before submitting."
+  deadlines:
+    - type: abstract
+      label: Abstract submission
+      date_iso: "2026-04-29T23:59:00+02:00"
+      display: "Apr 29, 2026, 23:59 CEST"
+      timezone: "Europe/Paris"
+      status_hint: verified
+
+- id: ada-2026
+  acronym: ADA
+  year: 2026
+  name: American Diabetes Association Scientific Sessions
+  category: Endocrinology
+  location: New Orleans, LA, USA
+  conference_start: "2026-06-05"
+  conference_end: "2026-06-08"
+  website: https://professional.diabetes.org/scientific-sessions
+  submission_url: https://professional.diabetes.org/scientific-sessions/abstracts
+  source_url: https://professional.diabetes.org/scientific-sessions/abstracts
+  last_checked: "2026-05-03"
+  tags: [diabetes, endocrinology, clinical, abstract, late-breaking]
+  note: "ADA regular and late-breaking abstract deadlines have passed for 2026."
+  deadlines:
+    - type: abstract
+      label: Regular abstract submission
+      date_iso: "2026-01-05T17:00:00-05:00"
+      display: "Jan 5, 2026, 5:00 PM ET"
+      timezone: "America/New_York"
+      status_hint: verified
+    - type: late-breaking
+      label: Late-breaking abstract submission
+      date_iso: "2026-03-09T17:00:00-04:00"
+      display: "Mar 9, 2026, 5:00 PM ET"
+      timezone: "America/New_York"
+      status_hint: verified
+
+- id: ats-2026
+  acronym: ATS
+  year: 2026
+  name: American Thoracic Society International Conference
+  category: Respiratory
+  location: Orlando, FL, USA
+  conference_start: "2026-05-15"
+  conference_end: "2026-05-20"
+  website: https://conference.thoracic.org/
+  submission_url: https://conference.thoracic.org/program/call_for_abstracts/submission-criteria.php
+  source_url: https://site.thoracic.org/events/ats-2026-scientific-abstracts-case-reports-deadline
+  last_checked: "2026-05-03"
+  tags: [respiratory, pulmonary, critical care, sleep medicine, abstract, case report]
+  note: "ATS 2026 regular and late-breaking abstract deadlines have passed."
+  deadlines:
+    - type: abstract
+      label: Scientific abstracts and case reports
+      date_iso: "2025-11-05T17:00:00-05:00"
+      display: "Nov 5, 2025, 5:00 PM ET"
+      timezone: "America/New_York"
+      status_hint: verified
+    - type: late-breaking
+      label: Late-breaking abstracts
+      date_iso: "2026-01-28T17:00:00-05:00"
+      display: "Jan 28, 2026, 5:00 PM ET"
+      timezone: "America/New_York"
+      status_hint: verified
+
+- id: snmmi-2026
+  acronym: SNMMI
+  year: 2026
+  name: Society of Nuclear Medicine and Molecular Imaging Annual Meeting
+  category: Nuclear Medicine
+  location: Los Angeles, CA, USA
+  conference_start: "2026-05-30"
+  conference_end: "2026-06-02"
+  website: https://snmmi.org/AM/AM/Home.aspx
+  submission_url: https://snmmi.org/AM/AM/Scientific-Program/Post_Abstracts.aspx
+  source_url: https://snmmi.org/Web/Web/News/Alerts/Abstract%20Deadline%20Extended.aspx
+  last_checked: "2026-05-03"
+  tags: [nuclear medicine, molecular imaging, pet, spect, abstract]
+  note: "SNMMI 2026 clinical/scientific abstract deadline has passed."
+  deadlines:
+    - type: abstract
+      label: Clinical or scientific abstract submission
+      date_iso: "2026-01-13T23:59:00-05:00"
+      display: "Jan 13, 2026, 11:59 PM ET"
+      timezone: "America/New_York"
+      status_hint: verified
+    - type: technologist-student
+      label: Technologist student abstract submission
+      date_iso: "2026-02-06T23:59:00-05:00"
+      display: "Feb 6, 2026, time TBD"
+      timezone: "America/New_York"
+      status_hint: verified_date_time_tbd
+
+- id: arrs-2027
+  acronym: ARRS
+  year: 2027
+  name: American Roentgen Ray Society Annual Meeting
+  category: Radiology
+  location: Denver, CO, USA
+  conference_start: "2027-05-02"
+  conference_end: "2027-05-05"
+  website: https://arrs.org/meetings
+  submission_url: https://arrs.org/meetings
+  source_url: https://arrs.org/meetings
+  last_checked: "2026-05-03"
+  tags: [radiology, medical imaging, clinical, abstract]
+  note: "ARRS 2027 meeting dates are posted; abstract deadline not yet posted in the tracked source."
+  deadlines:
+    - type: abstract
+      label: Abstract submission
+      date_iso: ""
+      display: "TBD"
+      timezone: "America/Denver"
+      status_hint: tbd
