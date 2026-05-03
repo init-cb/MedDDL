@@ -1,0 +1,12 @@
+title: MedDDL
+description: Medical, Imaging, Cardiology and AI Conference Deadline Tracker
+url: ""
+baseurl: ""
+lang: en
+timezone: Asia/Tokyo
+plugins: []
+exclude:
+  - README.md
+  - CONTRIBUTING.md
+  - LICENSE
+  - MedDDL.zip
