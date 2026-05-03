@@ -1,0 +1,116 @@
+---
+title: MedDDL
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MedDDL tracks abstract, paper, challenge, workshop, and registration deadlines for major medical, imaging, cardiology, and medical AI conferences.">
+  <title>MedDDL — Medical Conference Deadline Tracker</title>
+  <link rel="icon" href="{{ '/assets/img/favicon.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav-shell" aria-label="Main navigation">
+      <a class="brand" href="{{ '/' | relative_url }}" aria-label="MedDDL home">
+        <span class="brand-mark">M</span>
+        <span>MedDDL</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="#contribute">Contribute</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Medical Conference Deadline Tracker</p>
+        <h1>Track medical, imaging, cardiology, and medical AI conference deadlines.</h1>
+        <p class="hero-text">A lightweight, GitHub Pages-native tracker inspired by ccfddl, focused on abstract, paper, workshop, challenge, and late-breaking submission deadlines.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#deadlines">View deadlines</a>
+          <a class="button ghost" href="#contribute">Add a conference</a>
+        </div>
+      </div>
+      <div class="hero-panel" aria-label="Site summary">
+        <div class="metric-card">
+          <span class="metric-value" id="stat-total">—</span>
+          <span class="metric-label">Tracked conferences</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-value" id="stat-upcoming">—</span>
+          <span class="metric-label">Upcoming deadlines</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-value" id="stat-tbd">—</span>
+          <span class="metric-label">Need updates</span>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="controls-section" id="deadlines" aria-labelledby="deadline-heading">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Deadline board</p>
+          <h2 id="deadline-heading">Upcoming and tracked deadlines</h2>
+        </div>
+        <p class="updated-note">Seed data last checked: <strong>2026-05-03</strong>. Always verify the official source before submitting.</p>
+      </div>
+
+      <div class="search-row">
+        <label class="search-box" for="searchInput">
+          <span class="sr-only">Search conferences</span>
+          <input id="searchInput" type="search" placeholder="Search RSNA, CMR, cardiology, MICCAI..." autocomplete="off">
+        </label>
+        <select id="statusFilter" aria-label="Filter by deadline status">
+          <option value="all">All statuses</option>
+          <option value="upcoming">Upcoming deadlines</option>
+          <option value="next30">Next 30 days</option>
+          <option value="expired">Expired deadlines</option>
+          <option value="tbd">TBD / needs update</option>
+        </select>
+      </div>
+
+      <div class="filter-block" aria-label="Category filters">
+        <button class="chip active" type="button" data-category="All">All</button>
+        <div id="categoryChips" class="chip-list"></div>
+      </div>
+
+      <div class="result-meta">
+        <span id="resultCount">Loading conferences…</span>
+        <button id="resetFilters" class="text-button" type="button">Reset filters</button>
+      </div>
+
+      <div id="conferenceGrid" class="conference-grid" aria-live="polite"></div>
+      <div id="emptyState" class="empty-state" hidden>
+        <h3>No conferences match the current filters.</h3>
+        <p>Try a broader category or clear the search box.</p>
+      </div>
+    </section>
+
+    <section class="info-section" id="contribute">
+      <div class="info-card">
+        <h2>How to update deadlines</h2>
+        <p>Edit <code>_data/conferences.yml</code>, add the official source URL, and keep uncertain dates as <code>TBD</code>. This keeps the tracker auditable and avoids misleading submission dates.</p>
+      </div>
+      <div class="info-card">
+        <h2>Suggested scope</h2>
+        <p>Prioritize major radiology, cardiology, MRI, CMR, neurology, oncology, nuclear medicine, respiratory, and medical AI meetings. Workshop and challenge deadlines are welcome when linked to official sources.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>MedDDL is an open-source static tracker. Data may change; verify every deadline on the official conference website.</p>
+  </footer>
+
+  <script>
+    window.MEDDDL_CONFERENCES = {{ site.data.conferences | jsonify }};
+  </script>
+  <script src="{{ '/assets/js/app.js' | relative_url }}" defer></script>
+</body>
+</html>
